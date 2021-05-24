@@ -1,0 +1,634 @@
+//Función main
+//ASYNC - AWAIT
+void main() async {
+  print('Estamos a punto de pedir datos');
+  
+  String data = await httGet('https://api.nada.com/aliens');
+  
+  print(data);
+  print('Ultima linea');
+}
+
+Future<String> httGet(String url) {
+  return Future.delayed(new Duration(seconds: 4),(){
+    return 'Hola mundo';
+  });
+}
+
+/*
+//FUTURES
+void main(){
+  print('Estamos a punto de pedir datos');
+  
+  httGet('https://api.nada.com/aliens').then((data){
+    print(data);
+  });
+  
+  print('Ultima linea');
+}
+
+Future<String> httGet(String url) {
+  return Future.delayed(new Duration(seconds: 4),(){
+    return 'Hola mundo';
+  });
+}
+*/
+
+/*
+//MIXING
+void main(){
+  final pato = new Pato();
+  pato.volar();
+  
+  final pezVolador = new PezVolador();
+  pezVolador.nadar();
+}
+abstract class Animal{
+  
+}
+
+abstract class Mamifero extends Animal{}
+abstract class Ave extends Animal{}
+abstract class Pez extends Animal{}
+
+abstract class Volador{
+  void volar()=>print('Estoy volando');
+}
+
+abstract class Caminante{
+  void caminar()=>print('Estoy caminando');
+}
+
+abstract class Nadador{
+  void nadar()=>print('Estoy nadando');
+}
+
+class Delfin extends Mamifero with Nadador{}
+
+class Murcielago extends Mamifero with Caminante, Volador{}
+
+class Gato extends Mamifero with Caminante{}
+
+class Paloma extends Ave with Caminante, Volador{}
+
+class Pato extends Ave with Caminante, Volador, Nadador{}
+
+class Tiburon extends Pez with Nadador{}
+
+class PezVolador extends Pez with Nadador, Volador{}
+*/
+/*
+void main(){
+  final superman = new Heroe();
+  superman.nombre = 'Clark Kent';
+  
+  final villano = new Villano();
+  villano.nombre = 'Lex Luthor'; 
+}
+abstract class Personaje{
+  String nombre;
+  String poder;
+}
+class Heroe extends Personaje {
+  //String nombre;
+  //String poder;
+  int valentia;
+}
+class Villano extends Personaje {
+  //String nombre;
+  //String poder;
+  int maldad;
+}
+*/
+
+
+/*
+void main(){
+  
+  final perro = new Animal();
+  perro.emitirSonido();
+  
+  final gato = new Animal();
+  gato.emitirSonido();
+}
+
+
+abstract class Animal{
+  int patas;
+  void emitirSonido();
+}
+class Perro implements Animal{
+  
+  int patas;
+  int colas;
+  
+  void emitirSonido()=>print('Guau!');
+}
+
+class Gato implements Animal{
+  inr patas;
+  void emitirSonido()=>print('Miauu!');
+}
+*/
+/*
+void main(){
+  final cuadrado = new Cuadrado();
+  cuadrado.lado = 10;
+  print(cuadrado);
+  print('Área = ${cuadrado.area}');
+}
+
+class Cuadrado{
+  double _lado;
+  double _area;
+  
+  set lado(double valor){
+    if(valor<=0){
+      throw('El lado no puede ser menor o igual a 0');
+    }
+    _lado = valor;
+  }
+  
+  double get area=>_lado*_lado;
+  
+  toString()=>'Lado: $_lado';
+}
+*/
+
+/*
+import 'dart:convert';
+
+void main(){
+  //final wolverine = new Heroe('Logan','Regeneración');
+  final rawJson = '{"nombre":"Logan","poder":"Regeneración"}';
+  Map parsedJson = json.decode(rawJson);
+  //print(parsedJson);
+  
+  final wolverine = new Heroe.fromJson(parsedJson);
+  print(wolverine.nombre);
+  print(wolverine.poder);
+  
+}
+
+class Heroe{
+String nombre;
+  String poder;
+  Heroe(this.nombre, this.poder);
+  
+  Heroe.fromJson(Map parsedJson){
+    nombre = parsedJson['nombre'];
+    poder = parsedJson['poder'];
+  }
+}
+*/
+/*
+void main(){
+  final wolverine = new Heroe(poder:'Regeneración',nombre:'Logan');
+  print(wolverine.toString());
+  print(wolverine.nombre);
+  print(wolverine.poder);
+}
+
+//class Heroe{
+//  String nombre;
+//  String poder;
+//  Heroe({String nombre , String poder}){
+//    this.nombre = nombre;
+//    this.poder = poder;
+//  }
+
+Heroe({this.nombre, this.poder});
+  String toString(){
+    return '{$nombre} - ${poder}';
+  }
+}
+*/
+/*
+void main(){
+  final wolverine = new Heroe(poder:'Regeneración',nombre:'Logan');
+  print(wolverine.toString());
+  print(wolverine.nombre);
+  print(wolverine.poder);
+}
+
+class Heroe{
+  String nombre;
+  String poder;
+  Heroe({String nombre , String poder}){
+    this.nombre = nombre;
+    this.poder = poder;
+  }
+  String toString(){
+    return '{$this.nombre} - ${this.poder}';
+  }
+}
+*/
+
+/*
+void main(){
+  saludar();
+}
+
+void saludar(){
+  print('Hola');
+}
+*/
+
+/*
+void main(){
+  String propiedad = 'soltero';
+  
+  Map<String, dynamic> persona = {
+    'nombre':'Arthur',
+    'edad':28,
+    'soltero':true
+  };
+  print(persona['nombre']);
+  print(persona['edad']);
+  print(persona[propiedad]);
+  
+  Map<int, String> personas = {
+    1:'Felipe',
+    2:'Iron man',
+    9:'Strange'
+  };
+  
+  personas.addAll({4:'Banner'});
+  print(personas);
+  print(personas[2]);
+}
+*/
+/*
+void main(){
+  Persona p = Persona('Arthur', 'Dioses Reto',20);
+  print('Nombre: ${p.nombre}, Apellidos: ${p.apellidos}');
+  
+  Persona p2 = Persona.sinEdad('Antonio','Dioses');
+  print('Nombre: ${p2.nombre}, Apellidos: ${p2.apellidos}, Edad: ${p2.edad}');
+  
+  p.esMayor(p2);
+}
+
+class Persona{
+  String nombre, apellidos;
+  int edad;
+  //Syntactic sugar
+  Persona(this.nombre, this.apellidos, this.edad);
+  //Definir un constructor aleternatico: Named constructors
+  
+  Persona.sinEdad(String nombre, String apellidos){
+    this.nombre = nombre;
+    this.apellidos = apellidos;
+    this.edad = 0;
+  }
+  
+  void esMayor(Persona p){
+    if(this.edad>p.edad){
+      print('${this.nombre} es mayor que ${p.nombre}');
+    }else{
+      print('${this.nombre} es menor que ${p.nombre}');
+    }
+  }
+}
+*/
+
+/*
+void main(){
+  Persona p = Persona('Arthur', 'Dioses Reto',20);
+  print('Nombre: ${p.nombre}, Apellidos: ${p.apellidos}');
+  
+  Persona p2 = Persona.sinEdad('Antonio','Dioses');
+  print('Nombre: ${p2.nombre}, Apellidos: ${p2.apellidos}, Edad: ${p2.edad}');
+}
+
+class Persona{
+  String nombre, apellidos;
+  int edad;
+  //Syntactic sugar
+  Persona(this.nombre, this.apellidos, this.edad);
+  //Definir un constructor aleternativo: Named constructors
+  Persona.sinEdad(String nombre, String apellidos){
+    this.nombre = nombre;
+    this.apellidos = apellidos;
+    this.edad = 0;
+  }
+}
+*/
+
+/*
+void main(){
+  Persona p = Persona('Arthur', 'Dioses Reto');
+  p.nombre = 'Antonio';
+  print('Nombre: ${p.nombre}, Apellidos: ${p.apellidos}');
+}
+class Persona{
+  String nombre, apellidos;
+  
+  Persona(String n, String a){
+    this.nombre = n;
+    this.apellidos = a;
+  }
+}
+*/
+/*
+class Persona{
+  String nombre, apellidos;
+  
+  Persona(String n, String a){
+    this.nombre = n;
+    this.apellidos = a;
+  }
+}
+*/
+/*
+void main(){
+  var estadoTienda = 'CERRADA';
+  switch(estadoTienda){
+    case 'ABIERTA':
+      print('Tienda está abierta');
+      break;
+    case 'CERRADA':
+      print('Tienda está cerrada');
+      break;
+  }
+}
+*/
+/*
+void main(){
+  var alumnos = ['Arthur','Felipe','Aarón','Samuel','Abraham','Angel'];
+  bool encontrado = false;
+  
+  var i = 0;
+  
+  while(!encontrado){
+    if(alumnos[i]=='Angel'){
+      encontrado = true;
+      print('Hemos encontrado a Angel!!!');
+    }else{
+      print('El alumno ${alumnos[i]} no es Angel. Seguimos buscando');
+    }
+    i++;
+  }
+  
+  print('-----------Do-while---------');
+  i=0;
+  encontrado = false;
+  do{
+  if(alumnos[i]=='Abraham'){
+      encontrado = true;
+      print('Hemos encontrado a Abraham!!!');
+    }else{
+      print('El alumno ${alumnos[i]} no es Abraham. Seguimos buscando');
+    }
+   i++;
+  }
+  while(!encontrado);
+}
+*/
+/*
+void main(){
+  //for básico
+  var animales=['Perro', 'Gato','Pato','elefante','Tigre'];
+  for(var i=0; i<animales.length;i++){
+    print(animales[i]);
+  }
+  //forEach
+  print('------impresión ForEach------');
+  animales.forEach((animal)=>
+                  print(animal));
+  //for-in
+  print('-------impresión de for-in----------');
+  for(var animal in animales){
+    print(animal);
+  }
+}
+*/
+
+/*
+main(){
+  var sistemasOperativos  = ['Windows','Mac','Ubuntu'];
+  sistemasOperativos.forEach((elemento)=>
+    print('Posición: ${sistemasOperativos.indexOf(elemento)}, Nombre del elemento ${elemento}')
+  );
+}
+*/
+
+/*
+main(){
+  var sistemasOperativos = ['Windows','Mac','Ubuntu'];
+  sistemasOperativos.forEach((elemento){
+    print('Posición:  ${sistemasOperativos.indexOf(elemento)} nombre: ${elemento}');
+  }); 
+}
+*/
+
+/*
+main(){
+  //Funciones como parámetros
+  var listaNumbers= [1,2,3,4,5,6,7,8,9];
+  listaNumbers.forEach(imprimirNumero);
+  
+  //Funcion declarada en variable
+  var pasarAMayusculas = (mensaje)=>mensaje.toUpperCase();
+  print(pasarAMayusculas('hola mundo'));
+}
+
+void imprimirNumero(int number){
+  print(number.toString());
+}
+*/
+/*
+main(){
+  mostrarNombreCompleto(lastName: 'Dioses Reto',name: 'Arthur');
+  mostrarInformacionExtra('Arthur');
+}
+
+//Parámetros nombrados
+mostrarNombreCompleto({name, lastName}){
+  print('Nombre: ${name}');
+  print('Apellidos: ${lastName}');
+  
+}
+
+//Parámetros posicionados
+//Con corchetes son opcionales
+//Se puede setear valores por defecto
+mostrarInformacionExtra(String name, [int age=25, String city='Piura']) {
+ print('Nombre: ${name}, Edad: ${age.toString()}, Ciudad: ${city}'); 
+}
+*/
+/*
+main(){
+  bool esPar(int number){
+    return number%2==0;
+  }
+  print('¿El número 2 es par? ${esPar(2)}');
+  print('¿El número 3 es par? ${esPar(3)}');
+  
+  esImpar(int number)=>number%2!=0;
+  print('¿El número 2 es impar? ${esImpar(2)}');
+  print('¿El número 3 es impar? ${esImpar(3)}');
+}
+*/
+/*
+main(){
+  //Runers
+  var coche = '\u{1F697}';
+  print(coche);
+  
+ Runes icons = new Runes ('\u{1F6A2} \u{1F6A4} \u{1F695}');
+  print(new String.fromCharCodes(icons)); 
+}
+*/
+/*
+main(){
+  var idiomas ={
+    'es':'español',
+    'en':'Inglés',
+    'fr':'Francés'};
+   print(idiomas['es']);
+   
+   var nuevoIdioma = {'ch':'Chino'};
+   idiomas.addAll(nuevoIdioma);
+   
+   print(idiomas);
+   
+   var alumnos = Map();
+   alumnos[1]='Felipe';
+   alumnos[2] ='Arthur';
+   alumnos[3] ='Bolivia';
+   alumnos[4]='Olivia';
+   
+   print(alumnos); 
+}
+*/
+/*
+void main(){
+  Set<String> sistemasOperativos = {'Windows','MacOS','Ubuntu','CentOS'};
+  print(sistemasOperativos);
+  
+  Set<String> sistemasOperativosMoviles = {'Android','iOS'};
+  
+  sistemasOperativos.add('RedHat');
+  print(sistemasOperativos);
+  
+  sistemasOperativos.addAll(sistemasOperativosMoviles);
+  print(sistemasOperativos);
+}
+*/
+
+
+/*
+void main(){
+  var listaNumeros = [1,2,3,4,5];
+  print(listaNumeros.length);
+  
+  var listaPares = [2,4,6,8];
+  print(listaPares.length);
+  
+  print('Elementos de la posicion 2: ${listaPares[2]}');
+  
+  var listaImpares = [3,5,7,9];
+  print(listaImpares.length);
+  
+  print('Elementos de la posicion 1: ${listaImpares[1]}');
+ 
+  //Modificar un elemento
+  listaImpares[1]=9;
+  print('Elementos de la posicion 1: ${listaImpares[1]}');
+}
+*/
+
+/*
+void main(){
+  bool existe=false;
+  if(existe){print('Existe es true');}
+  else {print('Existe es false');}
+  
+}
+*/
+/*
+void main(){
+  var cadena1 = 'Hola mundo';
+  var cadena2 = "Hola mundo 2";
+  var cadena3 = 'Yo dije: \'Hola mundo\'';
+  
+  //concatenar Strings
+  var string1 = 'Hola' 
+    ' mundo';
+  print(string1);
+  
+  var string2 = 'Hola';
+  var string3 = 'Mundo';
+  print(string2+string3);
+  
+  //Expresions en Strings
+  var edad = 30;
+  
+  String frase = 'Mi edad es ${edad}';
+  
+  print(frase);
+  
+  print('Mi saludo inicial: ${string2+string3}');
+  print('2+2= ${2+2}');
+}
+*/
+/*
+void main(){
+  //int
+  int x = 1;
+  //double
+  double y = 1.6;
+  //variable generica para números
+  num z = -1;
+  
+  print(z.abs());
+  print(y.ceil());//redondeo al siguiente número entero
+  print(y.floor());//redondeo al anterior número entero
+  
+  double real = 1;//Dart convierte el valor a 1.0
+  
+  //String --> int
+  int uno = int.parse('1');
+  
+  //String --> double
+  double unoPuntoUno = double.parse('1.1');
+  
+  //int --> String
+  String cadenaUno =  1.toString();
+  
+  //double --> String
+  double pi = 3.1416;
+  String cadenaPi = pi.toStringAsFixed(2);//Obtener dos decimales
+  print(cadenaPi);
+  }
+  */
+  
+  
+/*
+void main(){
+  final name = 'Arthur';
+  //Constante cuyo valor se define en tiempo de compilación
+  const pi = 3.1416;
+  //calculo del radio de una circunsferencia
+  //radio = circunsferencia/(2*pi)
+  const divisor = 2*pi;
+  var radio = 15/divisor;
+  print('Radio: '+radio.toString());
+}
+*/
+/*
+void main() {
+  var _name;
+  conocerTipo(_name);
+  _name='Felipe';
+  conocerTipo(_name);
+}
+conocerTipo(dynamic variable){
+  if(variable is String){
+    print('name es String');
+  }else{
+    print('Nombre es de otro tipo');
+  }
+}
+*/
